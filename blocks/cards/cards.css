@@ -1,0 +1,13 @@
+.cards {
+    z-index: 0;
+    width: 282px;
+    height: 361px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #000;
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}

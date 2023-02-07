@@ -1,17 +1,23 @@
-# Проект: Место
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
-### Обзор
 
+<h1 align="center">Hi, my name <a href="https://vk.com/haircutterpro" target="_blank">Nikita</a> 
+<img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
+<h2 align="center">I have prepared the project "Mesto" for you</h2>
+
+### Review
+* HTML
+* CSS
+* Adaptive layout
 * Figma
-* Картинки
+* JavaScript
 
-**Figma**
+**<h3>Project Description</h3>**
+________________________
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+The first work combining HTML, Css, adaptive layout and JavaScript.
+The main task was to understand the functionality of JS and work with it. Buttons, forms and data saving.
 
-**Картинки**
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+* [Link to the project work "Mesto"]()

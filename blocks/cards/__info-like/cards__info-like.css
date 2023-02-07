@@ -1,0 +1,21 @@
+.cards__info-like {
+    width: 22px;
+    height: 19px;
+    background-image:  url(../../../image/like__disabled.svg);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    z-index: 0;
+    cursor: pointer;
+    transition: opacity 0.4s;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.cards__info-like:hover {
+    opacity: 0.5;
+}

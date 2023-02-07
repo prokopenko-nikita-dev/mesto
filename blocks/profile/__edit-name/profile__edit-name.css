@@ -1,0 +1,33 @@
+.profile__edit-name {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    position: relative;
+    align-items: flex-end;
+    grid-area: name;
+    margin: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 114%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1100px) {
+    .profile__edit-name {
+        align-self: flex-end;
+        justify-self: flex-end;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 725px) {
+    .profile__edit-name {
+        font-size: 27px;
+        line-height: 100%;
+        align-self: center;
+        justify-self: flex-end;
+        margin: 0;
+    }
+}

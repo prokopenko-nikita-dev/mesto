@@ -1,0 +1,15 @@
+.footer {
+    max-width: calc(100% - 200px * 2);
+    margin: 66px auto 60px auto;
+    display: flex;
+    position: relative;
+    justify-content: flex-start;
+}
+
+@media screen and (max-width: 1050px) {
+
+    .footer {
+        max-width: calc(100% - 19px * 2);
+        margin: 48px auto 36px auto;
+    }
+}

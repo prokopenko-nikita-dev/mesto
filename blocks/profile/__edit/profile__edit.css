@@ -1,0 +1,31 @@
+.profile__edit {
+    display: grid;
+    flex-direction: row;
+    color: #ffffff;
+    grid-area: edit;
+    grid-template-areas: "name button"
+        "prof .";
+    grid-row-gap: 16px;
+    grid-column-gap: 18px;
+    min-width: 336px;
+    align-items: baseline;
+}
+
+@media screen and (max-width: 1100px) {
+
+    .profile__edit {
+        flex-direction: column;
+        grid-row-gap: 16px;
+    }
+
+}
+
+@media screen and (max-width: 725px) {
+
+    .profile__edit {
+        max-width: 282px;
+        align-self: center;
+        justify-self: center;
+    }
+
+}
