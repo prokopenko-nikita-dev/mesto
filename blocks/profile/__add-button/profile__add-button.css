@@ -2,12 +2,8 @@
     color: #fff;
     background-color: #000;
     cursor: pointer;
-    border: none;
+    border: 1px solid;
     transition: opacity 0.4s;
-    background-image: url('../../../image/Add_Button.svg');
-    background-repeat: no-repeat;
-    box-sizing: border-box;
-    background-size: contain;
     z-index: 0;
     border-radius: 2px;
     margin-right: 0;
@@ -15,7 +11,9 @@
     width: 150px;
     display: flex;
     position: relative;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
 }
 
 .profile__add-button:hover {
@@ -25,5 +23,6 @@
 @media screen and (max-width: 1100px) {
     .profile__add-button {
         width: 282px;
+
     }
 }

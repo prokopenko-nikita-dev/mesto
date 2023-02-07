@@ -1,0 +1,20 @@
+.profile__plus {
+    background-image: url(../../../image/plus_add-buttom.svg);
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    background-size: contain;
+    height: 22px;
+    width: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: #000;
+}
+
+@media screen and (max-width: 1100px) {
+    .profile__plus {
+        height: 16px;
+        width: 16px;
+    }
+}
