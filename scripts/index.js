@@ -14,7 +14,7 @@ const formUserDescription = document.querySelector(".popup__input_type_prof");
 
 btnEditProfile.addEventListener("click", () => {
     popup.classList.add("popup_opened");
-
+debugger
     formUserName.value = userName.textContent;
     formUserDescription.value = userDescription.textContent;
 })
