@@ -12,8 +12,8 @@
 
 @media screen and (max-width: 1100px) {
     .header__logo_sup {
-        background-image: url('../../../../image/Header_logo2.svg');  
+        background-image: url('../../../../image/Header_logo2.svg');
         width: 103.74px;
-        height: 24.4px; 
+        height: 24.4px;
     }
 }
