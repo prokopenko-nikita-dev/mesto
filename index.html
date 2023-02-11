@@ -10,23 +10,24 @@
 
 <body class="page">
     <header class="header">
-        <div class="header__container">
-            <div class="header__logo">
-                </div></div>
+        <div class="header__logo"></div>
     </header>
     <main class="content">
         <section class="profile">
-            <div class="profile__container">
-                <img class="profile__avatar" src="./image/Avatar.svg" alt="аватарка пользователя">
-            </div>
+            <img class="profile__avatar" src="./image/Avatar.svg" alt="аватарка пользователя">
             <div class="profile__edit">
-                <h1 id="name" class="profile__edit-name">Жак-Ив Кусто</h1>
-                <p id="prof" class="profile__edit-prof">Исследователь океана</p>
-                <button type="button" class="profile__edit-profile"><img src="./image/Edit_Button.svg"
-                        alt="кнопка редактирования профиля"></button>
+                <h1 class="profile__edit-name">Жак-Ив Кусто</h1>
+                <p class="profile__edit-prof">Исследователь океана</p>
+                <div class="profile__container-edit">
+                    <div class="profile__block-edit">
+                        <button type="button" class="profile__edit-profile"></button>
+                    </div>
+                </div>
             </div>
-            <div class="profile__block">
-                <button type="button" class="profile__add-button"><div class="profile__plus"></div></button>
+            <div class="profile__container-add">
+                <div class="profile__block-add">
+                    <button type="button" class="profile__add-button"></button>
+            </div>
             </div>
         </section>
         <section class="elements">
@@ -63,7 +64,7 @@
                         <img class="cards__img" src="./image/Mount_elbrus2.jpg" alt="Эльбрус">
                     </div>
                     <div class="cards__info">
-                        <h2 class="cards__info-heading">Эльбрус</h2>
+                        <h2 class="cards__info-heading">Гора Эльбрус</h2>
                         <button aria-label="like" type="button" class="cards__info-like"></button>
                     </div>
                 </li>
@@ -93,10 +94,10 @@
     </footer>
 
     <div id="popup" class="popup">
-        <div class="popup__body">
+        <div class="popup__container">
             <button type="button" class="popup__close"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="редактирование профиля" class="popup__content">
+            <form name="content" class="popup__content">
                 <input type="text" name="user-name" class="popup__input popup__input_type_name">
                 <input type="text" name="user-prof" class="popup__input popup__input_type_prof">
                 <button type="submit" class="popup__save-button">Сохранить</button>

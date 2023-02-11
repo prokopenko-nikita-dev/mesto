@@ -1,0 +1,20 @@
+.profile__container-edit {
+    grid-area: button;
+    width: 42px;
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 26px;
+}
+@media screen and (max-width: 1100px) {
+    .profile__container-edit {
+        padding-top: 7px;
+    }
+}
+
+@media screen and (max-width: 725px) {
+    .profile__container-edit {
+        margin-bottom: -10px;
+        margin-left: -16px;
+        padding-top: 2px;
+    }
+}

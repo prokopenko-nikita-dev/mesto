@@ -3,8 +3,8 @@ const popupBtnClose = document.querySelector(".popup__close");
 const formEditProfile = document.querySelector(".popup__content");
 
 const btnEditProfile = document.querySelector(".profile__edit-profile");
-const btnEditProfileSave = document.querySelector(".popup__save-button");
-const cardsSection = document.querySelector(".elements");
+let btnEditProfileSave = document.querySelector(".popup__save-button");
+let cardsSection = document.querySelector(".elements");
 
 const userName = document.querySelector(".profile__edit-name");
 const userDescription = document.querySelector(".profile__edit-prof");
@@ -14,7 +14,6 @@ const formUserDescription = document.querySelector(".popup__input_type_prof");
 
 btnEditProfile.addEventListener("click", () => {
     popup.classList.add("popup_opened");
-debugger
     formUserName.value = userName.textContent;
     formUserDescription.value = userDescription.textContent;
 })
@@ -30,8 +29,8 @@ function closePopup () {
 function formEditProfileHandler(e) {
     e.preventDefault();
 
-    const formUserNameData = document.querySelector(".popup__input_type_name").value;
-    const formUserDescriptionData = document.querySelector(".popup__input_type_prof").value;
+    formUserNameData = formUserName.value;
+    formUserDescriptionData = formUserDescription.value;
 
     document.querySelector(".profile__edit-name").textContent = formUserNameData;
     document.querySelector(".profile__edit-prof").textContent = formUserDescriptionData;

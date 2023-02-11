@@ -2,7 +2,6 @@
 @import url(../vendor/fonts.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
-@import url(../blocks/header/__container/header__container.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__edit/profile__edit.css);
@@ -10,10 +9,12 @@
 @import url(../blocks/profile/__edit-name/profile__edit-name.css);
 @import url(../blocks/profile/__edit-prof/profile__edit-prof.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
-@import url(../blocks/profile/__container/profile__container.css);
 @import url(../blocks/profile/__block/profile__block.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
-@import url(../blocks/profile/__plus/profile__plus.css);
+@import url(../blocks/profile/__block-add/profile__block-add.css);
+@import url(../blocks/profile/__block-edit/profile__block-edit.css);
+@import url(../blocks/profile/__container-add/profile__container-add.css);
+@import url(../blocks/profile/__container-edit/profile__container-edit.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__list/elements__list.css);
 @import url(../blocks/cards/cards.css);
@@ -27,11 +28,10 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__body/popup__body.css);
+@import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__content/popup__content.css);
 @import url(../blocks/popup/__title/popup__title.css);
-@import url(../blocks/popup/__input/_type/popup__input_type_name.css);
-@import url(../blocks/popup/__input/_type/popup__input_type_prof.css);
 @import url(../blocks/popup/__save-button/popup__save-button.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__input/__input/popup__input.css)

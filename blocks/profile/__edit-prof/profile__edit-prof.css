@@ -1,32 +1,32 @@
 .profile__edit-prof {
     font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
     grid-area: prof;
-    margin: 0;
     font-style: normal;
     font-size: 18px;
     line-height: 120%;
-    bottom: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    margin-left: 8px;
+    margin-top: -9px;
 }
 
 @media screen and (max-width: 1100px) {
     .profile__edit-prof {
-        display: flex;
         align-self: center;
-        justify-self: flex-end;
-        margin: 0;
+        display: flex;
+        justify-content: flex-end;
+        font-size: 14px;
+        line-height: 100%;
     }
 }
 
 @media screen and (max-width: 725px) {
     .profile__edit-prof {
-        font-size: 14px;
-        line-height: 100%;
         display: flex;
         align-self: center;
-        justify-self: flex-end;
-        margin: 0;
+        margin-right: -50px;
+        margin-top: 0;
+        justify-content: center;
     }
 }
