@@ -1,6 +1,5 @@
 .profile__avatar {
     padding: 0;
-    display: block;
     grid-area: avatar;
     width: 120px;
     height: 120px;
