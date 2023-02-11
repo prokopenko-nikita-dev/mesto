@@ -16,7 +16,7 @@
 .popup__input:first-child {
     margin-bottom: 18px;
     padding-top: 6px;
-    padding-bottom: 10px;  
+    padding-bottom: 10px;
 }
 
 .popup__input:last-of-type {
@@ -29,9 +29,7 @@
     .popup__input:first-child {
         max-width: 238px;
     }
-}
 
-@media screen and (max-width: 1279px) {
     .popup__input:last-child {
         max-width: 238px;
     }
