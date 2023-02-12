@@ -1,7 +1,6 @@
 .popup__input {
     font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
     display: block;
-    font-family: inherit;
     outline: none;
     text-overflow: ellipsis;
     white-space: nowrap;
