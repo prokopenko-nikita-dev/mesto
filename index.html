@@ -15,20 +15,14 @@
     <main class="content">
         <section class="profile">
             <img class="profile__avatar" src="./image/Avatar.svg" alt="аватарка пользователя">
-            <div class="profile__edit">
-                <h1 class="profile__edit-name">Жак-Ив Кусто</h1>
-                <p class="profile__edit-prof">Исследователь океана</p>
-                <div class="profile__container-edit">
-                    <div class="profile__block-edit">
-                        <button type="button" class="profile__edit-profile"></button>
-                    </div>
+            <div class="profile__info">
+                <div class="profile__edit">
+                    <h1 class="profile__edit-name">Жак-Ив Кусто</h1>
+                    <button type="button" class="profile__edit-profile" aria-label="Редактировать профиль"></button>
                 </div>
+                <p class="profile__edit-prof">Исследователь океана</p>
             </div>
-            <div class="profile__container-add">
-                <div class="profile__block-add">
-                    <button type="button" class="profile__add-button"></button>
-            </div>
-            </div>
+            <button type="button" class="profile__add-button" aria-label="Добваить карточку"></button>
         </section>
         <section class="elements">
             <ul class="elements__list">
@@ -93,7 +87,7 @@
         <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div id="popup" class="popup">
+    <div class="popup">
         <div class="popup__container">
             <button type="button" class="popup__close"></button>
             <h2 class="popup__title">Редактировать профиль</h2>

@@ -3,8 +3,6 @@ const popupBtnClose = document.querySelector(".popup__close");
 const formEditProfile = document.querySelector(".popup__content");
 
 const btnEditProfile = document.querySelector(".profile__edit-profile");
-let btnEditProfileSave = document.querySelector(".popup__save-button");
-let cardsSection = document.querySelector(".elements");
 
 const userName = document.querySelector(".profile__edit-name");
 const userDescription = document.querySelector(".profile__edit-prof");
@@ -32,8 +30,8 @@ function formEditProfileHandler(e) {
     formUserNameData = formUserName.value;
     formUserDescriptionData = formUserDescription.value;
 
-    document.querySelector(".profile__edit-name").textContent = formUserNameData;
-    document.querySelector(".profile__edit-prof").textContent = formUserDescriptionData;
+    userName.textContent = formUserNameData;
+    userDescription.textContent = formUserDescriptionData;
 
     closePopup()
 }

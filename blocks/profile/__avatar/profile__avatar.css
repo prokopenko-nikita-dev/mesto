@@ -1,28 +1,12 @@
 .profile__avatar {
-    padding: 0;
-    grid-area: avatar;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    box-sizing: border-box;
     border-radius: 50%;
-    object-position: 0 0;
-    display: flex;
+    max-width: 120px;
+    max-height: 120px;
     margin: 0;
-    align-self: center;
-    justify-content: center;
-    align-items: center;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 710px) {
     .profile__avatar {
-        align-self: flex-end;
-        justify-self: center;
-    }
-}
-
-@media screen and (max-width: 725px) {
-    .profile__avatar {
-        align-self: center;
+        margin: auto;
     }
 }

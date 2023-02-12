@@ -1,25 +1,14 @@
 .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-    max-width: calc(100% - 200px * 2);
-    min-height: 74px;
-    margin: 45px auto 40px auto;
-    border-bottom: 1px rgba(84, 84, 84, 0.7) solid;
-    position: relative;
-    align-items: flex-start;
+    margin: 0 auto;
+    max-width: 880px;
+    padding: 45px 0 41px 0;
+    border-bottom: 1px solid #545454;
     color: #ffffff;
 }
 
-@media screen and (max-width: 1100px) {
-
+@media screen and (max-width: 710px) {
     .header {
-        max-width: 100%;
-        margin: 0;
-        padding-left: 28px;
-        margin-top: 27px;
-        margin-bottom: 31.6px;
-        min-height: 54px;
+        padding: 27px 0 32px 26px;
+        margin: 0 -19px;
     }
 }

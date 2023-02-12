@@ -1,33 +1,15 @@
 .profile {
-    max-width: calc(100% - 15.6% * 2);
-    margin: 40px auto 50px auto;
-    padding: 0;
-    display: grid;
-    grid-template-areas: "avatar edit button";
-    grid-template-columns: minmax(auto, 120px) minmax(auto, 336px) minmax(auto, auto);
-    column-gap: 26px;
-    align-items: center;
-    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 40px 0 50px 0;
+    gap: 30px;
 }
 
-@media screen and (max-width: 1100px) {
-
+@media screen and (max-width: 710px) {
     .profile {
-        grid-template-areas: "avatar"
-            "edit"
-            "button";
-        grid-template-columns: 100%;
-        justify-content: center;
-        align-items: center;
-        max-width: calc(100% - 24px * 2);
-        margin: 40px auto 40px auto;
-        row-gap: 26px;
-    }
-}
-
-@media screen and (max-width: 725px) {
-
-    .profile {
-        max-width: calc(100% - 19px * 2);
+        flex-direction: column;
+        gap: 26px;
+        padding: 40px 0 36px 0;
     }
 }
