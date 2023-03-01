@@ -1,7 +1,4 @@
 //  ============== открытие/закрытие popup ===================
-
-const popup = document.querySelector(".popup");
-const popupBtnClose = document.querySelector(".popup__close");
 const formEdit = document.querySelector(".popup__content_edit");
 const formAdd = document.querySelector(".popup__content_add");
 
@@ -35,49 +32,21 @@ btnEditProfile.addEventListener("click", () => {
 
 btnCloseEdit.addEventListener("click", closePopupEdit);
 formEdit.addEventListener("submit", formEditProfileHandler);
-function closePopupEdit() {
+function closePopupEdit () {
     popupEdit.classList.remove("popup_opened");
 }
 
 function formEditProfileHandler(e) {
     e.preventDefault();
 
-    formUserNameData = formUserName.value;
-    formUserDescriptionData = formUserDescription.value;
+   const formUserNameData = formUserName.value;
+   const formUserDescriptionData = formUserDescription.value;
 
     userName.textContent = formUserNameData; 
     userDescription.textContent = formUserDescriptionData;
 
     closePopupEdit()
 }
-
-//  ============== Массив с данными ===================
-
-const initialCards = [{
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-},
-{
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-},
-{
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-},
-{
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-},
-{
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-},
-{
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-}
-];
 
 //  ============== popup add ===================
 
@@ -91,7 +60,7 @@ function closePopupAdd() {
 
 //  ============== Показать карточки из массива ===================
 
-const ul = document.querySelector('.elements__list');
+const newCard = document.querySelector('.elements__list');
 const form = document.querySelector('.popup__content_add');
 const template = document.querySelector('#template');
 
@@ -103,50 +72,51 @@ const handleDelete = (evt) => {
     evt.target.closest('.cards').remove();
 }
 
+const likeActive = (evt) => {
+    evt.target.classList.toggle('cards__info-like_active');
+  };
+
 const getElement = (item) => {
-const newElement = template.content.cloneNode(true);
+const newElement = template.content.cloneNode( true );
 const newElementTitle = newElement.querySelector('.cards__info-heading');
       newElementTitle.textContent = (item.name);
 const newElementPicture = newElement.querySelector('.cards__img');
       newElementPicture.src = (item.link);
+      newElementPicture.alt = (item.name);
       newElementPicture.addEventListener("click", () => {
         imgPopup.classList.add("popup_opened")
         fullImg.src = item.link
+        fullImg.alt = item.name
         nameImg.textContent = item.name 
       })
 
 const deleteButton = newElement.querySelector('.cards__trash');
       deleteButton.addEventListener('click', handleDelete);
 
+const likeBtn = newElement.querySelector(".cards__info-like");
+      likeBtn.addEventListener('click', likeActive);
+
     return newElement;
 }
 
 const renderElement = (wrap, item) => {
-    wrap.prepend(getElement(item));
+    wrap.prepend(getElement (item) );
 }
 
 initialCards.forEach((item) => {
-    renderElement(ul, item);
+    renderElement(newCard, item);
 });
 
-//  ============== like ===================
-
-cardsSection.addEventListener("click", (e) => {
-    if (e.target.closest(".cards__info-like")) {
-        e.target.closest(".cards__info-like").classList.toggle("cards__info-like_active");
-    }
-})
-
 //  ============== Форма добаваления новой карточки ===================
-form.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-
 const name = document.querySelector("#text");
 const image = document.querySelector("#link");
 
+form.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+
 const item = { name: name.value, link: image.value };
 
-    renderElement(ul, item);
+    renderElement(newCard, item);
     closePopupAdd();
     evt.target.reset();
 });
@@ -158,7 +128,6 @@ const btnCloseImg = document.querySelector(".popup__close_img");
 
 const closeImgPopup = () => {
     imgPopup.classList.remove("popup_opened");
-    fullImg.src = ""
 }
 
 btnCloseImg.addEventListener("click", closeImgPopup);
