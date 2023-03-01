@@ -1,5 +1,5 @@
 .cards__info-like {
-    background-image:  url(../../../image/like__disabled.svg);
+    background-image:  url(../../../image/deactive.svg);
     box-sizing: border-box;
     cursor: pointer;
     transition: opacity 0.3s ease;

@@ -13,4 +13,5 @@
     align-items: center;
     justify-content: center;
     padding: 19px;
+    transition: all 0.8s ease 0s;
 }
