@@ -33,7 +33,7 @@ function closePopup(popup) {
 }
 
 btnEditProfile.addEventListener("click", () => {
-    openPopup(popupEdit);
+    openPopup(popupEdit)
     formUserName.value = userName.textContent;       
     formUserDescription.value = userDescription.textContent;
 })
@@ -53,16 +53,17 @@ function formEditProfileHandler(e) {
     userName.textContent = formUserNameData; 
     userDescription.textContent = formUserDescriptionData;
 
-closePopup(popupEdit);
+closePopup(popupEdit)
 }
 
 //  ============== popup add ===================
 
 btnAddCard.addEventListener("click", () => {
-openPopup(popupAdd);
+openPopup(popupAdd)
 })
+
 btnCloseAdd.addEventListener("click", () => {
-closePopup(popupAdd);
+closePopup(popupAdd)
 })
 
 
@@ -137,5 +138,5 @@ const btnCloseImg = document.querySelector(".popup__close_img");
 
 
 btnCloseImg.addEventListener("click", () => {
-closePopup(popupImg);
+closePopup(popupImg)
 })
