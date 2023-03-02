@@ -19,21 +19,24 @@ const btnAddCard = document.querySelector(".profile__add-button");
 const btnCloseAdd = document.querySelector(".popup__close_add");
 const popupAdd = document.querySelector("#popup_add");
 const cardsSection = document.querySelector(".elements");
+const popup = document.querySelector("popup");
 
 //  ==================================================================
 
 //  ============== popup edit ===================
 
 btnEditProfile.addEventListener("click", () => {
-    popupEdit.classList.add("popup_opened");
+function openPopup (popupEdit) {
+    popup.classList.add('popup_opened');
+  }
     formUserName.value = userName.textContent;       
     formUserDescription.value = userDescription.textContent;  
 })
 
 btnCloseEdit.addEventListener("click", closePopupEdit);
 formEdit.addEventListener("submit", formEditProfileHandler);
-function closePopupEdit () {
-    popupEdit.classList.remove("popup_opened");
+function closePopup (popupEdit) {
+    popup.classList.remove("popup_opened");
 }
 
 function formEditProfileHandler(e) {
@@ -51,11 +54,13 @@ function formEditProfileHandler(e) {
 //  ============== popup add ===================
 
 btnAddCard.addEventListener("click", () => {
-    popupAdd.classList.add("popup_opened");
+    function openPopup (popupAdd) {
+        popup.classList.add('popup_opened');
+      }
 })
 btnCloseAdd.addEventListener("click", closePopupAdd);
-function closePopupAdd() {
-    popupAdd.classList.remove("popup_opened");
+function closePopup (popupAdd) {
+    popup.classList.remove("popup_opened");
 }
 
 //  ============== Показать карточки из массива ===================
@@ -84,7 +89,9 @@ const newElementPicture = newElement.querySelector('.cards__img');
       newElementPicture.src = (item.link);
       newElementPicture.alt = (item.name);
       newElementPicture.addEventListener("click", () => {
-        imgPopup.classList.add("popup_opened")
+        function openPopup (popupImg) {
+            popup.classList.add('popup_opened');
+          }
         fullImg.src = item.link
         fullImg.alt = item.name
         nameImg.textContent = item.name 
@@ -123,11 +130,11 @@ const item = { name: name.value, link: image.value };
 
 //  ============== popup открывания изображения полностью ===================
 
-const imgPopup = document.querySelector("#popup_img");
+const popupImg = document.querySelector("#popup_img");
 const btnCloseImg = document.querySelector(".popup__close_img");
 
-const closeImgPopup = () => {
-    imgPopup.classList.remove("popup_opened");
+function closePopup (popupImg) {
+    popup.classList.remove("popup_opened");
 }
 
 btnCloseImg.addEventListener("click", closeImgPopup);
