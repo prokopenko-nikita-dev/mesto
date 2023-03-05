@@ -20,10 +20,12 @@ const btnCloseAdd = document.querySelector(".popup__close_add");
 const popupAdd = document.querySelector("#popup_add");
 const cardsSection = document.querySelector(".elements");
 const popup = document.querySelector("popup");
+const btnHideWindow = document.querySelectorAll(".popup__window");
 
 //  ==================================================================
 
-//  ============== popup edit ===================
+//  ============== Открытие/закрытие попап ===================
+
 function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
@@ -32,15 +34,33 @@ function closePopup(popup) {
     popup.classList.remove("popup_opened");
 }
 
+//  ============== Закрытие попап  по кнопке Esc ===================
+
+document.addEventListener('keydown', (evt) => {
+    if(evt.key === 'Escape') {
+        closePopup(popup);
+    }
+})
+
+//  ============== Закрытие попап  по Оверлэй ===================
+
+document.addEventListener('mousedown', (evt) => {
+    closePopup(btnHideWindow);
+})
+//  ============== Кнопка открытия модального редактирования профиля ===================
+
 btnEditProfile.addEventListener("click", () => {
     openPopup(popupEdit)
     formUserName.value = userName.textContent;
     formUserDescription.value = userDescription.textContent;
 })
 
+//  ============== Закрытие попап  по крестику ===================
+
 btnCloseEdit.addEventListener("click", () => {
     closePopup(popupEdit)
 })
+//  ============== Отправка формы ===================
 
 formEdit.addEventListener("submit", formEditProfileHandler);
 
