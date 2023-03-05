@@ -37,7 +37,7 @@
         <div class="popup__container">
             <button type="button" class="popup__close popup__close_edit"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="content" class="popup__content popup__content_edit">
+            <form name="content" class="popup__content popup__content_edit" novalidate>
                 <input type="text" name="user-name" class="popup__input popup__input_type_name" required minlength="2" maxlength="40">
                 <span class="popup__input-error" id="sign-in-name-error">Вы пропустили это поле</span>
                 <input type="text" name="user-prof" class="popup__input popup__input_type_prof" required minlength="2" maxlength="200">
@@ -45,24 +45,28 @@
                 <button type="submit" class="popup__save-button">Сохранить</button>
             </form>
         </div>
-    </div>
+    </div>   
+
+
   
 
-    <div class="popup" id="popup_add">
-        <div class="popup__container">
-            <button type="button" class="popup__close popup__close_add"></button>
-            <h2 class="popup__title">Новое место</h2>
-            <form name="content" class="popup__content popup__content_add" novalidate>
-                <input required minlength="2" maxlength="30" type="text" id="text" placeholder="Название" name="title"
-                    class="popup__input popup__input_type_name">
-                    <span class="popup__input-error" id="sign-in-name-error">Вы пропустили это поле</span>
-                <input required type="url" id="link" placeholder="Ссылка на картинку" name="src"
-                    class="popup__input popup__input_type_prof">
-                    <span class="popup__input-error" id="sign-in-url-error">Вы пропустили это поле</span>
-                <button type="submit" class="popup__save-button">Сохранить</button>
-            </form>
+        <div class="popup" id="popup_add">
+            <div class="popup__container">
+                <button type="button" class="popup__close popup__close_add"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <form name="content" class="popup__content popup__content_add" novalidate>
+                    <input required minlength="2" maxlength="30" type="text" id="text" placeholder="Название" name="title"
+                        class="popup__input popup__input_type_name">
+                        <span class="popup__input-error" id="sign-in-name-error">Вы пропустили это поле</span>
+                    <input required type="url" id="link" placeholder="Ссылка на картинку" name="src"
+                        class="popup__input popup__input_type_prof">
+                        <span class="popup__input-error" id="sign-in-url-error">Вы пропустили это поле</span>
+                    <button type="submit" class="popup__save-button">Сохранить</button>
+                </form>
+            </div>
         </div>
-    </div>
+
+
 
     <div class="popup" id="popup_img">
         <div class="popup__container popup__container-img">

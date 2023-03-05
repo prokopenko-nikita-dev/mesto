@@ -19,10 +19,31 @@ const btnAddCard = document.querySelector(".profile__add-button");
 const btnCloseAdd = document.querySelector(".popup__close_add");
 const popupAdd = document.querySelector("#popup_add");
 const cardsSection = document.querySelector(".elements");
-const popup = document.querySelector("popup");
+const popup = document.querySelector(".popup");
 
+const popupCls = document.querySelector(".popup__close");
 //  ==================================================================
 
+//  ==============  Закрываем попап по клику на оверлей ===================
+
+const OverlayClosePopup = document.querySelectorAll(".popup");
+OverlayClosePopup.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target === evt.currentTarget || evt.target.classList.contains("popup__close")) {
+      closePopup(evt.currentTarget);
+    }
+  });
+});
+
+//  ==============  Закрываем попап по клику на Esc ===================
+const EscClosePopup = document.querySelectorAll(".popup");
+EscClosePopup.forEach((popup) => {
+    popup.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+        closePopup(e.key)
+    }
+        });
+})
 //  ============== popup edit ===================
 function openPopup(popup) {
     popup.classList.add('popup_opened');

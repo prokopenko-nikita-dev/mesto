@@ -1,4 +1,4 @@
-const popupValidate = document.querySelector(".popup__content");
+/*const popupValidate = document.querySelector(".popup__content");
 const inputs = popupValidate.querySelectorAll(".popup__input");
 
 
@@ -10,7 +10,7 @@ inputs.forEach(inputElement => {
         errorElement.innerText = '';
         errorElement.classList.remove(".popup__input-error_active")
     } else {
-       errorElement.innerText = inputElement.validationMessage;
-       errorElement.classList.add(".popup__input-error_active");
+        errorElement.innerText = inputElement.validationMessage;
+        errorElement.classList.add(".popup__input-error_active");
     }
-    });
+});*/
