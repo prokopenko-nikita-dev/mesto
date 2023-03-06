@@ -36,14 +36,11 @@ OverlayClosePopup.forEach((popup) => {
 });
 
 //  ==============  Закрываем попап по клику на Esc ===================
-const EscClosePopup = document.querySelectorAll(".popup");
-EscClosePopup.forEach((popup) => {
-    popup.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-        closePopup(e.key)
-    }
-        });
-})
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+    closePopup(popup)
+}
+    });
 //  ============== popup edit ===================
 function openPopup(popup) {
     popup.classList.add('popup_opened');

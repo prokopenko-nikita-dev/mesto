@@ -1,16 +1,30 @@
-/*const popupValidate = document.querySelector(".popup__content");
-const inputs = popupValidate.querySelectorAll(".popup__input");
+const formSelector = document.querySelector(".popup__content ");
+const inputSelector = formSelector.querySelector(".popup__input ");
+const inputErrorClass = formSelector.querySelector(".${inputSelector.id}-error");
 
+//  ==============  Валидация инпутов ===================
 
-inputs.forEach(inputElement => {
-    const isValid = inputElement.validity.valid;
-    const inputSectionElement = inputElement.parentNode;
-    const errorElement = inputSectionElement.querySelector(".popup__input-error");
-    if (isValid) {
-        errorElement.innerText = '';
-        errorElement.classList.remove(".popup__input-error_active")
-    } else {
-        errorElement.innerText = inputElement.validationMessage;
-        errorElement.classList.add(".popup__input-error_active");
-    }
-});*/
+inputSelector.array.forEach(inputSelector => {
+    const showError = (input, errorMessage) => {
+        input.classList.add("popup__input-error");
+        inputErrorClass.textContent = errorMessage;
+        inputErrorClass.classList.add("popup__input-error_active");
+        }
+        
+        const hideError = (input) => {
+            input.classList.remove("popup__input-error"); 
+            inputErrorClass.classList.remove("popup__input-error_active");
+            inputErrorClass.textContent = ''
+        }
+        const enableValidation = () => {
+            if (!inputSelector.validity.valid) {
+                showError(inputSelector, inputSelector.validationMessage);
+            } else {
+                hideError(inputSelector);
+            }
+        };
+        
+        inputSelector.addEventListener("input", function(evt) {
+        enableValidation();
+        })  
+});
