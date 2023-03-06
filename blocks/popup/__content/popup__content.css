@@ -5,3 +5,7 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.popup__content .popup__form-group {
+    position: relative;
+}
