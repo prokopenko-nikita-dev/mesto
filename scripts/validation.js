@@ -1,5 +1,4 @@
 const formSelector = document.querySelectorAll('.popup__content ')
-const formInput = formSelector.querySelector('.popup__input')
 //  ==============  Валидация инпутов ===================
 
 const enableValidation = (inputSelector) => {
@@ -34,5 +33,5 @@ const enableValidation = (inputSelector) => {
   Array.from(formSelector).forEach(form => {
     const inputSelector = form.querySelectorAll('.popup__input ')
     Array.from(inputSelector).forEach(enableValidation)
-  })
+  }) 
   
