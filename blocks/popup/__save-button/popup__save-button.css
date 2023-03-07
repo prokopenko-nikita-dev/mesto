@@ -20,6 +20,13 @@
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+.popup__save-button_disabled {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    }
+
 @media screen and (max-width: 1279px) {
     .popup__save-button {
         font-size: 14px;

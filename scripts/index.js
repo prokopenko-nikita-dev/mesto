@@ -24,35 +24,27 @@ const popup = document.querySelector(".popup");
 const popupCls = document.querySelector(".popup__close");
 //  ==================================================================
 
-//  ==============  Закрываем попап по клику на оверлей ===================
 
-const OverlayClosePopup = document.querySelectorAll(".popup");
-OverlayClosePopup.forEach((popup) => {
+//  ============== popup edit ===================
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+        
     popup.addEventListener("click", (evt) => {
         if (evt.target === evt.currentTarget || evt.target.classList.contains("popup__close")) {
             closePopup(evt.currentTarget);
         }
     });
-});
 
-//  ==============  Закрываем попап по клику на Esc ===================
-
-const EscClosePopup = document.querySelectorAll(".popup");
-EscClosePopup.forEach((popup) => {
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
             closePopup(popup)
         }
     });
-})
-
-//  ============== popup edit ===================
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
 }
 
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
+
 }
 
 btnEditProfile.addEventListener("click", () => {
