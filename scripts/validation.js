@@ -1,6 +1,6 @@
 const formSelector = document.querySelectorAll('.popup__content ')
 //  ==============  Валидация инпутов ===================
-
+//  ==============  Текст ===================
 const enableValidation = (inputSelector) => {
 
     const inputErrorClass = document.querySelector(`#${inputSelector.name}-error`);
@@ -11,12 +11,17 @@ const enableValidation = (inputSelector) => {
         inputSectionElement = inputSelector.parentNode;
         inputErrorClass.classList.add('popup__input-error_active');
         input.classList.add('popup__input_invalid');
+        submitButtonSelector.disabled = 'true';
+        submitButtonSelector.classList.add('popup__save-button_disabled');
+
     }
 
     const hideError = (input) => {
         inputErrorClass.classList.remove('popup__input-error_active')
         inputErrorClass.textContent = ''
         input.classList.remove('popup__input_invalid');
+        submitButtonSelector.disabled = '';
+        submitButtonSelector.classList.remove('popup__save-button_disabled');
     }
 
     inputSelector.addEventListener('input', function (evt) {
@@ -29,23 +34,27 @@ const enableValidation = (inputSelector) => {
         }
     })
 }
-let ValidBtn = true;
+
+//  ==============  Кнопка ===================
+/*let ValidBtn = true;
 for (i = 0; i < input.lenght; i++) {
-   const inputSelector = input[i];
-   const isValid = inputSelector.validity.valid;
-   if (!isValid) {
-    ValidBtn = false;
-    break;
-   }
+    const inputSelector = input[i];
+    const isValid = inputSelector.validity.valid;
+    if (!isValid) {
+        ValidBtn = false;
+        break;
+    }
 }
 
 if (ValidBtn) {
-    submitButtonSelector.disabled = '' ;
+    submitButtonSelector.disabled = '';
     submitButtonSelector.classList.remove('popup__save-button_disabled');
 } else {
-    submitButtonSelector.disabled = 'true' ;
-    submitButtonSelector.classList.add('popup__save-button_disabled'); 
-}
+    submitButtonSelector.disabled = 'true';
+    submitButtonSelector.classList.add('popup__save-button_disabled');
+}*/
+
+//  =============================================
 
 Array.from(formSelector).forEach(form => {
     const inputSelector = form.querySelectorAll('.popup__input ')
@@ -59,4 +68,4 @@ enableValidation({
     inactiveButtonClass: 'popup__save-button_disabled ',
     inputErrorClass: 'popup__input_type_error',
     errorClass: '.popup__input-error '
-  }); 
+}); 
