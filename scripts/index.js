@@ -25,7 +25,21 @@ const popupCls = document.querySelector(".popup__close");
 //  ==================================================================
 
 
+function validatePopup (popup) {
+    const form = popup.querySelector('form')
+    if (!form) return
+    const inputCollection = form.querySelectorAll('.popup__input')
+    const submitButton = form.querySelector('.popup__save-button')
+    const formIsInvalid = Array.from(inputCollection).some(input => !input.validity.valid)
+    if (formIsInvalid) {
+        submitButton.disabled = 'form'
+        submitButton.classList.add('popup__save-button_disabled')
+    }
+    }
+
 //  ============== popup edit ===================
+
+
 function openPopup(popup) {
     popup.classList.add('popup_opened');
         
@@ -75,6 +89,7 @@ function formEditProfileHandler(e) {
 
 btnAddCard.addEventListener("click", () => {
     openPopup(popupAdd)
+    validatePopup(popupAdd)
 })
 
 btnCloseAdd.addEventListener("click", () => {
