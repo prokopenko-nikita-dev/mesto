@@ -9,6 +9,7 @@
   transition: opacity 0.3s;
   opacity: 0;
 }
+
 .popup__input-error_active {
   opacity: 1;
 }
