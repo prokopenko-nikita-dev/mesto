@@ -4,7 +4,7 @@ enableValidation({
     submitButton: '.popup__save-button',
     inputErrorActive: 'popup__input-error_active',
     inputErrorLine: 'popup__input_invalid',
-    buttonSaveDisabled: '.popup__save-button_disabled',
+    buttonSaveDisabled: 'popup__save-button_disabled',
     popupInput: '.popup__input',
     popupInputError: '.popup__input-error'
   });
@@ -58,5 +58,3 @@ function enableValidation (config) {
     
     Array.from(formCollection).forEach(Validation)
 }
-
-enableValidation()
