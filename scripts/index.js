@@ -1,11 +1,10 @@
 //  ============== открытие/закрытие popup ===================
 const formEdit = document.querySelector(".popup__content_edit");
-const formAdd = document.querySelector(".popup__content_add");
+const form = document.querySelector(".popup__content_add");
 
 //  ============== редактирование  popup__edit ===================
 
 const popupEdit = document.querySelector("#popup_edit");
-const btnCloseEdit = document.querySelector(".popup__close_edit");
 const btnEditProfile = document.querySelector(".profile__edit-profile");
 const userName = document.querySelector(".profile__edit-name");
 const userDescription = document.querySelector(".profile__edit-prof");
@@ -16,12 +15,12 @@ const formUserDescription = document.querySelector(".popup__input_type_prof");
 //  ============== popup add-button ===================
 
 const btnAddCard = document.querySelector(".profile__add-button");
-const btnCloseAdd = document.querySelector(".popup__close_add");
 const popupAdd = document.querySelector("#popup_add");
 const cardsSection = document.querySelector(".elements");
 const popup = document.querySelector(".popup");
 
 const popupCls = document.querySelector(".popup__close");
+const popups = document.querySelectorAll('.popup') 
 //  ==================================================================
 
 
@@ -38,27 +37,32 @@ function validatePopup (popup) {
     }
 
 //  ============== popup edit ===================
+function closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+      const openedPopup = document.querySelector('.popup_opened')
+      closePopup(popup)
+    }
+  };
 
+  popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+          closePopup(popup)
+        }
+    })
+})
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-        
-    popup.addEventListener("click", (evt) => {
-        if (evt.target === evt.currentTarget || evt.target.classList.contains("popup__close")) {
-            closePopup(evt.currentTarget);
-        }
-    });
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            closePopup(popup)
-        }
-    });
+    document.addEventListener('keydown', closeByEscape);
 }
 
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
-
+    document.removeEventListener('keydown', closeByEscape); 
 }
 
 btnEditProfile.addEventListener("click", () => {
@@ -67,9 +71,6 @@ btnEditProfile.addEventListener("click", () => {
     formUserDescription.value = userDescription.textContent;
 })
 
-btnCloseEdit.addEventListener("click", () => {
-    closePopup(popupEdit)
-});
 formEdit.addEventListener("submit", formEditProfileHandler);
 
 
@@ -92,15 +93,11 @@ btnAddCard.addEventListener("click", () => {
     validatePopup(popupAdd)
 })
 
-btnCloseAdd.addEventListener("click", () => {
-    closePopup(popupAdd)
-})
 
 
 //  ============== Показать карточки из массива ===================
 
 const newCard = document.querySelector('.elements__list');
-const form = document.querySelector('.popup__content_add');
 const template = document.querySelector('#template');
 
 const fullImg = document.querySelector(".popup__full-img");
@@ -164,9 +161,3 @@ form.addEventListener("submit", (evt) => {
 //  ============== popup открывания изображения полностью ===================
 
 const popupImg = document.querySelector("#popup_img");
-const btnCloseImg = document.querySelector(".popup__close_img");
-
-
-btnCloseImg.addEventListener("click", () => {
-    closePopup(popupImg)
-})
