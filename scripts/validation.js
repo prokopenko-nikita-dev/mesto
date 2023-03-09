@@ -1,37 +1,47 @@
-const enableValidation = (config) => {
+enableValidation({
+    formCollection: '.popup__content',
+    inputGroupCollection: '.popup__form-group', 
+    submitButton: '.popup__save-button',
+    inputErrorActive: 'popup__input-error_active',
+    inputErrorLine: 'popup__input_invalid',
+    buttonSaveDisabled: '.popup__save-button_disabled',
+    popupInput: '.popup__input',
+    popupInputError: '.popup__input-error'
+  });
 
-    const formCollection = document.querySelectorAll('.popup__content ')
+function enableValidation (config) {
+    const formCollection = document.querySelectorAll(config.formCollection)
 
     const Validation = (form) => {
     
-        const inputGroupCollection = form.querySelectorAll('.popup__form-group')
-        const submitButton = form.querySelector('.popup__save-button')
+        const inputGroupCollection = form.querySelectorAll(config.inputGroupCollection)
+        const submitButton = form.querySelector(config.submitButton)
     
         const showError = (input, inputErrorSpan, errorMessage) => {
-            inputErrorSpan.classList.add('popup__input-error_active')
+            inputErrorSpan.classList.add(config.inputErrorActive)
             inputErrorSpan.textContent = errorMessage
-            input.classList.add('popup__input_invalid')
+            input.classList.add(config.inputErrorLine)
         }
     
         const hideError = (input, inputErrorSpan) => {
-            inputErrorSpan.classList.remove('popup__input-error_active')
+            inputErrorSpan.classList.remove(config.inputErrorActive)
             inputErrorSpan.textContent = ''
-            input.classList.remove('popup__input_invalid')
+            input.classList.remove(config.inputErrorLine)
         }
     
         const validateForm = () => {
-            const valid = Array.from(form.querySelectorAll('.popup__input')).every(input => input.validity.valid)
+            const valid = Array.from(form.querySelectorAll(config.popupInput)).every(input => input.validity.valid)
             if (valid) {
                 submitButton.disabled = ''
-                submitButton.classList.remove('popup__save-button_disabled')
+                submitButton.classList.remove(config.buttonSaveDisabled)
             } else {
                 submitButton.disabled = 'true'
-                submitButton.classList.add('popup__save-button_disabled')
+                submitButton.classList.add(config.buttonSaveDisabled)
             }
         }
         Array.from(inputGroupCollection).forEach(group => {
-            const popupInput = group.querySelector('.popup__input')
-            const inputErrorSpan = group.querySelector(`.popup__input-error`)
+            const popupInput = group.querySelector(config.popupInput)
+            const inputErrorSpan = group.querySelector(config.popupInputError)
     
             popupInput.addEventListener('input', function (evt) {
                 console.log(evt)
@@ -49,4 +59,4 @@ const enableValidation = (config) => {
     Array.from(formCollection).forEach(Validation)
 }
 
-enableValidation();
+enableValidation()
