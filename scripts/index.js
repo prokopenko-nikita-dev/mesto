@@ -21,6 +21,8 @@ const popup = document.querySelector(".popup");
 
 const popupCls = document.querySelector(".popup__close");
 const popups = document.querySelectorAll('.popup') 
+
+const popupImg = document.querySelector("#popup_img");
 //  ==================================================================
 
 
@@ -37,23 +39,13 @@ function validatePopup (popup) {
     }
 
 //  ============== popup edit ===================
-function closeByEscape(evt) {
-    if (evt.key === 'Escape') {
-      const openedPopup = document.querySelector('.popup_opened')
-      closePopup(popup)
-    }
-  };
 
-  popups.forEach((popup) => {
-    popup.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup)
-        }
-        if (evt.target.classList.contains('popup__close')) {
-          closePopup(popup)
-        }
-    })
-})
+const closeByEscape = (evt) => {
+    if (evt.key === "Escape") {
+      const popupOpened = document.querySelector(".popup_opened");
+      closePopup(popupOpened);
+    }
+  }
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -64,6 +56,19 @@ function closePopup(popup) {
     popup.classList.remove("popup_opened");
     document.removeEventListener('keydown', closeByEscape); 
 }
+
+
+  popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+          closePopup(popup)
+        }
+    })
+    
+})
 
 btnEditProfile.addEventListener("click", () => {
     openPopup(popupEdit)
@@ -145,6 +150,7 @@ initialCards.forEach((item) => {
 });
 
 //  ============== Форма добаваления новой карточки ===================
+
 const name = document.querySelector("#text");
 const image = document.querySelector("#link");
 
@@ -157,7 +163,3 @@ form.addEventListener("submit", (evt) => {
     closePopup(popupAdd);
     evt.target.reset();
 });
-
-//  ============== popup открывания изображения полностью ===================
-
-const popupImg = document.querySelector("#popup_img");
