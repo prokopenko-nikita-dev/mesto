@@ -1,32 +1,41 @@
-//  ============== открытие/закрытие popup ===================
-const formEdit = document.querySelector(".popup__content_edit");
-const form = document.querySelector(".popup__content_add");
+import {
+    formEdit,
+    popupEdit,
+    form,
+    btnEditProfile,
+    formCollection,
+    userName,
+    template,
+    userDescription,
+    formUserName,
+    formUserDescription,
+    btnAddCard,
+    popupAdd,
+    popups,
+    initialCards,
+    validatorConfig
+} from './data.js';
 
-//  ============== редактирование  popup__edit ===================
+import { Card } from './card.js';
+import { FormValidator } from './validation.js';
 
-const popupEdit = document.querySelector("#popup_edit");
-const btnEditProfile = document.querySelector(".profile__edit-profile");
-const userName = document.querySelector(".profile__edit-name");
-const userDescription = document.querySelector(".profile__edit-prof");
+function addCard(name, link) {
+    const card = new Card({ name: name, link: link }, '#template');
+    const cardElement = card.generateCard();
+    document.querySelector('.elements__list').prepend(cardElement);
+}
 
-const formUserName = document.querySelector(".popup__input_type_name");
-const formUserDescription = document.querySelector(".popup__input_type_prof");
+initialCards.forEach((item) => {
+    const card = new Card(item, '#template');
+    const cardElement = card.generateCard();
 
-//  ============== popup add-button ===================
-
-const btnAddCard = document.querySelector(".profile__add-button");
-const popupAdd = document.querySelector("#popup_add");
-const cardsSection = document.querySelector(".elements");
-const popup = document.querySelector(".popup");
-
-const popupCls = document.querySelector(".popup__close");
-const popups = document.querySelectorAll('.popup') 
-
-const popupImg = document.querySelector("#popup_img");
-//  ==================================================================
+    document.querySelector('.elements__list').prepend(cardElement);
+});
 
 
-function validatePopup (popup) {
+// ============== проверяет валидность формы при открытии попап ==============
+
+function validatePopup(popup) {
     const form = popup.querySelector('form')
     if (!form) return
     const inputCollection = form.querySelectorAll('.popup__input')
@@ -36,39 +45,43 @@ function validatePopup (popup) {
         submitButton.disabled = 'form'
         submitButton.classList.add('popup__save-button_disabled')
     }
-    }
+}
 
-//  ============== popup edit ===================
+//  ============== закрытие попап по кнопке Esc ===================
 
 const closeByEscape = (evt) => {
     if (evt.key === "Escape") {
-      const popupOpened = document.querySelector(".popup_opened");
-      closePopup(popupOpened);
+        const popupOpened = document.querySelector(".popup_opened");
+        closePopup(popupOpened);
     }
-  }
+}
 
-function openPopup(popup) {
+export function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
 }
 
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
-    document.removeEventListener('keydown', closeByEscape); 
+    document.removeEventListener('keydown', closeByEscape);
 }
 
 
-  popups.forEach((popup) => {
+//  ============== закрытие попап по Overlay ===================
+
+popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_opened')) {
             closePopup(popup)
         }
         if (evt.target.classList.contains('popup__close')) {
-          closePopup(popup)
+            closePopup(popup)
         }
     })
-    
+
 })
+
+//  ============== кнопка открытия попап окна edit и редактирование ===================
 
 btnEditProfile.addEventListener("click", () => {
     openPopup(popupEdit)
@@ -91,33 +104,14 @@ function formEditProfileHandler(e) {
     closePopup(popupEdit)
 }
 
-//  ============== popup add ===================
+//  ============== кнопка открытия окна добавления новой карточки  ADD ===================
 
 btnAddCard.addEventListener("click", () => {
     openPopup(popupAdd)
     validatePopup(popupAdd)
 })
 
-
-
 //  ============== Показать карточки из массива ===================
-
-const newCard = document.querySelector('.elements__list');
-const template = document.querySelector('#template');
-
-const fullImg = document.querySelector(".popup__full-img");
-const nameImg = document.querySelector(".popup__name");
-
-
-const handleDelete = (evt) => {
-    evt.target.closest('.cards').remove();
-}
-
-const likeActive = (evt) => {
-    evt.target.classList.toggle('cards__info-like_active');
-};
-
-
 const getElement = (item) => {
     const newElement = template.content.cloneNode(true);
     const newElementTitle = newElement.querySelector('.cards__info-heading');
@@ -125,18 +119,6 @@ const getElement = (item) => {
     const newElementPicture = newElement.querySelector('.cards__img');
     newElementPicture.src = (item.link);
     newElementPicture.alt = (item.name);
-    newElementPicture.addEventListener("click", () => {
-        fullImg.src = item.link
-        fullImg.alt = item.name
-        nameImg.textContent = item.name
-        openPopup(popupImg)
-    })
-
-    const deleteButton = newElement.querySelector('.cards__trash');
-    deleteButton.addEventListener('click', handleDelete);
-
-    const likeBtn = newElement.querySelector(".cards__info-like");
-    likeBtn.addEventListener('click', likeActive);
 
     return newElement;
 }
@@ -145,21 +127,16 @@ const renderElement = (wrap, item) => {
     wrap.prepend(getElement(item));
 }
 
-initialCards.forEach((item) => {
-    renderElement(newCard, item);
-});
-
-//  ============== Форма добаваления новой карточки ===================
-
-const name = document.querySelector("#text");
-const image = document.querySelector("#link");
-
 form.addEventListener("submit", (evt) => {
     evt.preventDefault();
-
-    const item = { name: name.value, link: image.value };
-
-    renderElement(newCard, item);
-    closePopup(popupAdd);
-    evt.target.reset();
-});
+    const target = evt.target
+    const name = target.querySelector('#text').value
+    const link = target.querySelector('#link').value
+    addCard(name, link)
+    closePopup(popupAdd)
+    target.reset();
+})
+Array.from(formCollection).forEach(form => {
+    const validator = new FormValidator(validatorConfig, form)
+    validator.enableValidation()
+})

@@ -1,60 +1,54 @@
-enableValidation({
-    formCollection: '.popup__content',
-    inputGroupCollection: '.popup__form-group', 
-    submitButton: '.popup__save-button',
-    inputErrorActive: 'popup__input-error_active',
-    inputErrorLine: 'popup__input_invalid',
-    buttonSaveDisabled: 'popup__save-button_disabled',
-    popupInput: '.popup__input',
-    popupInputError: '.popup__input-error'
-  });
+export {FormValidator}
 
-function enableValidation (config) {
-    const formCollection = document.querySelectorAll(config.formCollection)
+export default class FormValidator {
+    constructor(config, form) {
+        this._config = config
+        this._inputGroupCollection = Array.from(form.querySelectorAll(config.inputGroup))
+        this._submitButton = form.querySelector(config.submitButton)
+    }
 
-    const Validation = (form) => {
-    
-        const inputGroupCollection = form.querySelectorAll(config.inputGroupCollection)
-        const submitButton = form.querySelector(config.submitButton)
-    
-        const showError = (input, inputErrorSpan, errorMessage) => {
-            inputErrorSpan.classList.add(config.inputErrorActive)
-            inputErrorSpan.textContent = errorMessage
-            input.classList.add(config.inputErrorLine)
-        }
-    
-        const hideError = (input, inputErrorSpan) => {
-            inputErrorSpan.classList.remove(config.inputErrorActive)
-            inputErrorSpan.textContent = ''
-            input.classList.remove(config.inputErrorLine)
-        }
-    
-        const validateForm = () => {
-            const valid = Array.from(form.querySelectorAll(config.popupInput)).every(input => input.validity.valid)
-            if (valid) {
-                submitButton.disabled = ''
-                submitButton.classList.remove(config.buttonSaveDisabled)
-            } else {
-                submitButton.disabled = 'true'
-                submitButton.classList.add(config.buttonSaveDisabled)
-            }
-        }
-        Array.from(inputGroupCollection).forEach(group => {
-            const popupInput = group.querySelector(config.popupInput)
-            const inputErrorSpan = group.querySelector(config.popupInputError)
-    
-            popupInput.addEventListener('input', function (evt) {
-                console.log(evt)
-                const input = evt.target
-                if (!input.validity.valid) {
-                    showError(input, inputErrorSpan, input.validationMessage)
+    enableValidation() {
+        this._inputGroupCollection.forEach(inputGroup => {
+            const input = inputGroup.querySelector(this._config.popupInput)
+            input.addEventListener('input', evt => {
+                const _input = evt.target
+                if (!_input.validity.valid) {
+                    this._showError(inputGroup, _input.validationMessage)
                 } else {
-                    hideError(input, inputErrorSpan)
+                    this._hideError(inputGroup)
                 }
-                validateForm()
+                this._validate()
             })
         })
     }
-    
-    Array.from(formCollection).forEach(Validation)
+
+    _showError(inputGroup, msg) {
+        const errorSpan = inputGroup.querySelector(this._config.popupInputError)
+        const input = inputGroup.querySelector(this._config.popupInput)
+        errorSpan.classList.add(this._config.inputErrorActive)
+        errorSpan.textContent = msg
+        input.classList.add(this._config.inputErrorLine)
+    }
+
+    _hideError(inputGroup) {
+        const errorSpan = inputGroup.querySelector(this._config.popupInputError)
+        const input = inputGroup.querySelector(this._config.popupInput)
+        errorSpan.classList.remove(this._config.inputErrorActive)
+        errorSpan.textContent = ''
+        input.classList.remove(this._config.inputErrorLine)
+    }
+
+    _validate() {
+        const valid = this._inputGroupCollection.every(inputGroup => {
+            const input = inputGroup.querySelector(this._config.popupInput)
+            return input.validity.valid
+        })
+        if (valid) {
+            this._submitButton.disabled = ''
+            this._submitButton.classList.remove(this._config.buttonSaveDisabled)
+        } else {
+            this._submitButton.disabled = 'true'
+            this._submitButton.classList.add(this._config.buttonSaveDisabled)
+        }
+    }
 }
