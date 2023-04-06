@@ -1,96 +1,95 @@
 import {
-    formEdit,
-    popupEdit,
     form,
-    btnEditProfile,
-    formCollection,
-    userName,
-    template,
-    userDescription,
+    formEdit,
     formUserName,
     formUserDescription,
-    btnAddCard,
+    formProfileValidate,
+    formCollection,
+    popupEdit,
     popupAdd,
     popups,
+    btnAddCard,
+    btnEditProfile,
+    userName,
+    userDescription,
     initialCards,
-    validatorConfig
-} from './data.js';
+    validatorConfig,
+    newCard,
+} from "./Data.js";
 
-import { Card } from './card.js';
-import { FormValidator } from './validation.js';
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 
-function addCard(name, link) {
-    const card = new Card({ name: name, link: link }, '#template');
-    const cardElement = card.generateCard();
-    document.querySelector('.elements__list').prepend(cardElement);
-}
+//  ============== создание карточик из массива initialCard ===================
 
 initialCards.forEach((item) => {
-    const card = new Card(item, '#template');
+    const card = new Card(item, "#template");
     const cardElement = card.generateCard();
 
-    document.querySelector('.elements__list').prepend(cardElement);
+    newCard.prepend(cardElement);
 });
 
+//  ============== функция добавления новой карточки ===================
 
-// ============== проверяет валидность формы при открытии попап ==============
 
-function validatePopup(popup) {
-    const form = popup.querySelector('form')
-    if (!form) return
-    const inputCollection = form.querySelectorAll('.popup__input')
-    const submitButton = form.querySelector('.popup__save-button')
-    const formIsInvalid = Array.from(inputCollection).some(input => !input.validity.valid)
-    if (formIsInvalid) {
-        submitButton.disabled = 'form'
-        submitButton.classList.add('popup__save-button_disabled')
-    }
+function addCard(name, link) {
+    const card = new Card({ name: name, link: link }, "#template");
+    const cardElement = card.generateCard();
+
+    newCard.prepend(cardElement);
 }
+
 
 //  ============== закрытие попап по кнопке Esc ===================
 
-const closeByEscape = (evt) => {
-    if (evt.key === "Escape") {
+function closeByEscape(e) {
+    if (e.key === "Escape") {
         const popupOpened = document.querySelector(".popup_opened");
         closePopup(popupOpened);
     }
 }
 
 export function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener('keydown', closeByEscape);
+    popup.classList.add("popup_opened");
+    document.addEventListener("keydown", closeByEscape);
 }
 
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
-    document.removeEventListener('keydown', closeByEscape);
+    document.removeEventListener("keydown", closeByEscape);
 }
-
 
 //  ============== закрытие попап по Overlay ===================
 
 popups.forEach((popup) => {
-    popup.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup)
+    popup.addEventListener("mousedown", (evt) => {
+        if (
+            evt.target.classList.contains("popup_opened") ||
+            evt.target.classList.contains("popup__close")
+        ) {
+            closePopup(popup);
         }
-        if (evt.target.classList.contains('popup__close')) {
-            closePopup(popup)
-        }
-    })
+    });
+});
 
-})
+//  ============== Модальное окно с редактированием профиля ===================
 
-//  ============== кнопка открытия попап окна edit и редактирование ===================
+btnEditProfile.addEventListener("click", openEditProfile);
 
-btnEditProfile.addEventListener("click", () => {
-    openPopup(popupEdit)
+formProfileValidate.enableValidation();
+
+function openEditProfile(e) {
     formUserName.value = userName.textContent;
     formUserDescription.value = userDescription.textContent;
-})
+    formProfileValidate.clearErrors();
+    e.preventDefault();
+
+    openPopup(popupEdit);
+}
+
+//  ============== Форма редактирования профиля  ===================
 
 formEdit.addEventListener("submit", formEditProfileHandler);
-
 
 function formEditProfileHandler(e) {
     e.preventDefault();
@@ -101,42 +100,37 @@ function formEditProfileHandler(e) {
     userName.textContent = formUserNameData;
     userDescription.textContent = formUserDescriptionData;
 
-    closePopup(popupEdit)
+    closePopup(popupEdit);
 }
 
-//  ============== кнопка открытия окна добавления новой карточки  ADD ===================
+//  ============== Форма добавления карточки ===================
 
-btnAddCard.addEventListener("click", () => {
-    openPopup(popupAdd)
-    validatePopup(popupAdd)
-})
+form.addEventListener("submit", formAdd);
 
-//  ============== Показать карточки из массива ===================
-const getElement = (item) => {
-    const newElement = template.content.cloneNode(true);
-    const newElementTitle = newElement.querySelector('.cards__info-heading');
-    newElementTitle.textContent = (item.name);
-    const newElementPicture = newElement.querySelector('.cards__img');
-    newElementPicture.src = (item.link);
-    newElementPicture.alt = (item.name);
-
-    return newElement;
-}
-
-const renderElement = (wrap, item) => {
-    wrap.prepend(getElement(item));
-}
-
-form.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-    const target = evt.target
-    const name = target.querySelector('#text').value
-    const link = target.querySelector('#link').value
-    addCard(name, link)
-    closePopup(popupAdd)
+function formAdd(e) {
+    e.preventDefault();
+    const target = e.target;
+    const name = target.querySelector("#text").value;
+    const link = target.querySelector("#link").value;
+    addCard(name, link);
+    closePopup(popupAdd);
     target.reset();
-})
-Array.from(formCollection).forEach(form => {
-    const validator = new FormValidator(validatorConfig, form)
-    validator.enableValidation()
-})
+}
+
+//  ============== Валдидация формы добавления карточки ===================
+
+btnAddCard.addEventListener("click", openPopupAdd);
+
+function openPopupAdd(e) {
+    e.preventDefault();
+
+    openPopup(popupAdd);
+    //validatePopup(popupAdd);
+}
+
+//  ============== Валидация всех модальных окон ===================
+
+Array.from(formCollection).forEach((form) => {
+    const validator = new FormValidator(validatorConfig, form);
+    validator.enableValidation();
+});
