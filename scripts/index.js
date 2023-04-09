@@ -1,9 +1,8 @@
 import {
-    form,
+    formAddCard,
     formEdit,
-    formUserName,
-    formUserDescription,
-    formProfileValidate,
+    inputUserNameFormProfile,
+    inputUserDescriptionFormProfile,
     formCollection,
     popupEdit,
     popupAdd,
@@ -15,48 +14,51 @@ import {
     initialCards,
     validatorConfig,
     newCard,
-} from "./Data.js";
+    formProfileValidate,
+    formAddCardValidate
+} from "./data.js";
 
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { openPopup, closePopup } from "./popupAction.js"
 
 //  ============== создание карточик из массива initialCard ===================
 
-initialCards.forEach((item) => {
-    const card = new Card(item, "#template");
+function createCard(data) {
+    const card = new Card({ name: data.name, link: data.link }, "#template");
     const cardElement = card.generateCard();
+    return cardElement
+}
 
-    newCard.prepend(cardElement);
+function addCard(data, container, template) {
+    container.prepend(createCard(data, template))
+}
+
+initialCards.forEach((item) => {
+    addCard(item, newCard, "#template")
 });
 
+//  ============== Кнопка добавления карточки  ===================
+
+btnAddCard.addEventListener("click", openPopupAdd);
+
+function openPopupAdd(e) {
+    e.preventDefault();
+    formAddCardValidate.clearErrors();
+    openPopup(popupAdd);
+}
+
 //  ============== функция добавления новой карточки ===================
+formAddCard.addEventListener("submit", formAdd);
 
-
-function addCard(name, link) {
-    const card = new Card({ name: name, link: link }, "#template");
-    const cardElement = card.generateCard();
-
-    newCard.prepend(cardElement);
-}
-
-
-//  ============== закрытие попап по кнопке Esc ===================
-
-function closeByEscape(e) {
-    if (e.key === "Escape") {
-        const popupOpened = document.querySelector(".popup_opened");
-        closePopup(popupOpened);
-    }
-}
-
-export function openPopup(popup) {
-    popup.classList.add("popup_opened");
-    document.addEventListener("keydown", closeByEscape);
-}
-
-function closePopup(popup) {
-    popup.classList.remove("popup_opened");
-    document.removeEventListener("keydown", closeByEscape);
+function formAdd(e) {
+    e.preventDefault();
+    const target = e.target;
+    const name = target.querySelector("#text").value;
+    const link = target.querySelector("#link").value;
+    addCard({ name, link }, newCard, "#template");
+    closePopup(popupAdd);
+    target.reset();
 }
 
 //  ============== закрытие попап по Overlay ===================
@@ -76,11 +78,9 @@ popups.forEach((popup) => {
 
 btnEditProfile.addEventListener("click", openEditProfile);
 
-formProfileValidate.enableValidation();
-
 function openEditProfile(e) {
-    formUserName.value = userName.textContent;
-    formUserDescription.value = userDescription.textContent;
+    inputUserNameFormProfile.value = userName.textContent;
+    inputUserDescriptionFormProfile.value = userDescription.textContent;
     formProfileValidate.clearErrors();
     e.preventDefault();
 
@@ -94,8 +94,8 @@ formEdit.addEventListener("submit", formEditProfileHandler);
 function formEditProfileHandler(e) {
     e.preventDefault();
 
-    const formUserNameData = formUserName.value;
-    const formUserDescriptionData = formUserDescription.value;
+    const formUserNameData = inputUserNameFormProfile.value;
+    const formUserDescriptionData = inputUserDescriptionFormProfile.value;
 
     userName.textContent = formUserNameData;
     userDescription.textContent = formUserDescriptionData;
@@ -103,34 +103,9 @@ function formEditProfileHandler(e) {
     closePopup(popupEdit);
 }
 
-//  ============== Форма добавления карточки ===================
-
-form.addEventListener("submit", formAdd);
-
-function formAdd(e) {
-    e.preventDefault();
-    const target = e.target;
-    const name = target.querySelector("#text").value;
-    const link = target.querySelector("#link").value;
-    addCard(name, link);
-    closePopup(popupAdd);
-    target.reset();
-}
-
-//  ============== Валдидация формы добавления карточки ===================
-
-btnAddCard.addEventListener("click", openPopupAdd);
-
-function openPopupAdd(e) {
-    e.preventDefault();
-
-    openPopup(popupAdd);
-    //validatePopup(popupAdd);
-}
-
 //  ============== Валидация всех модальных окон ===================
 
-Array.from(formCollection).forEach((form) => {
-    const validator = new FormValidator(validatorConfig, form);
-    validator.enableValidation();
+Array.from(formCollection).forEach((formAdd) => {
+    const validatorAdd = new FormValidator(validatorConfig, formAdd);
+    validatorAdd.enableValidation();
 });

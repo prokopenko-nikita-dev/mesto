@@ -1,3 +1,5 @@
+import  FormValidator  from "./FormValidator.js";
+
 //  ============== Глобальные переменные для валидации ===================
 
 export const validatorConfig = {
@@ -10,18 +12,26 @@ export const validatorConfig = {
   popupInputError: ".popup__input-error",
 };
 
-import { FormValidator } from "./FormValidator.js";
-
 //  ============== Глобальные перменные  для функционала страницы ===================
 export const formProfileValidate = new FormValidator(
   validatorConfig,
 
   document.querySelector("#popup_edit")
 );
+
+export const formAddCardValidate = new FormValidator(
+  validatorConfig,
+
+  document.querySelector("#popup_add")
+);
+
+
+//создаем экземпляр формы
+
 export const formCollection = document.querySelectorAll(".popup__content");
 // открытие/закрытие popup
 export const formEdit = document.querySelector(".popup__content_edit");
-export const form = document.querySelector(".popup__content_add");
+export const formAddCard = document.querySelector(".popup__content_add");
 
 // редактирование  popup__edit
 
@@ -29,16 +39,16 @@ export const popupEdit = document.querySelector("#popup_edit");
 export const btnEditProfile = document.querySelector(".profile__edit-profile");
 export const userName = document.querySelector(".profile__edit-name");
 export const userDescription = document.querySelector(".profile__edit-prof");
-export const formUserName = document.querySelector(".popup__input_type_name");
-export const formUserDescription = document.querySelector(".popup__input_type_prof");
+export const inputUserNameFormProfile = document.querySelector(".popup__input_type_name");
+export const inputUserDescriptionFormProfile = document.querySelector(".popup__input_type_prof");
 
 // popup add-button
 
 export const btnAddCard = document.querySelector(".profile__add-button");
 export const popupAdd = document.querySelector("#popup_add");
 export const cardsSection = document.querySelector(".elements");
-export const popup = document.querySelector(".popup");
-export const popupCls = document.querySelector(".popup__close");
+export const groupPopups = document.querySelector(".popup");
+export const popupClose = document.querySelector(".popup__close");
 export const popups = document.querySelectorAll(".popup");
 export const popupImg = document.querySelector("#popup_img");
 
@@ -48,8 +58,8 @@ export const newCard = document.querySelector(".elements__list");
 export const template = document.querySelector("#template");
 export const fullImg = document.querySelector(".popup__full-img");
 export const nameImg = document.querySelector(".popup__name");
-export const name = document.querySelector("#text");
-export const image = document.querySelector("#link");
+export const textInput = document.querySelector("#text");
+export const imageLink = document.querySelector("#link");
 
 //  ============== Массив с данными ===================
 

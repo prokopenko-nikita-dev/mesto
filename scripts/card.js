@@ -2,14 +2,12 @@ import {
     fullImg,
     popupImg,
     nameImg
-} from './Data.js';
+} from './data.js';
 
-import { openPopup } from './Index.js';
-
-export { Card }
+import { openPopup } from './popupAction.js';
 
 
-class Card {
+export default class Card {
     //конструктор карточки
     constructor(data, template, handlerCardClick) {
         this._name = data.name;
@@ -54,13 +52,13 @@ class Card {
             nameImg.textContent = this._name
             openPopup(popupImg)
         });
-        this._dltButton.addEventListener('click', (evt) => {
-            evt.target.closest('.cards').remove()
-            event.stopPropagation();
+        this._dltButton.addEventListener('click', (e) => {
+            e.target.closest('.cards').remove()
+            e.stopPropagation();
         });
-        this._likeButton.addEventListener('click', (evt) =>{
-            evt.target.classList.toggle('cards__info-like_active')
-            event.stopPropagation();
+        this._likeButton.addEventListener('click', (e) => {
+            e.target.classList.toggle('cards__info-like_active')
+            e.stopPropagation();
         })
     };
 

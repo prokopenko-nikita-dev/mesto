@@ -1,5 +1,3 @@
-export { FormValidator };
-
 export default class FormValidator {
   constructor(config, form, inputGroup) {
     this._config = config;
