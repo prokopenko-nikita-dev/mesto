@@ -3,7 +3,6 @@ import {
     formEdit,
     inputUserNameFormProfile,
     inputUserDescriptionFormProfile,
-    formCollection,
     popupEdit,
     popupAdd,
     popups,
@@ -13,9 +12,7 @@ import {
     userDescription,
     initialCards,
     validatorConfig,
-    newCard,
-    formProfileValidate,
-    formAddCardValidate
+    newCard
 } from "./data.js";
 
 import Card from "./Card.js";
@@ -105,7 +102,8 @@ function formEditProfileHandler(e) {
 
 //  ============== Валидация всех модальных окон ===================
 
-Array.from(formCollection).forEach((formAdd) => {
-    const validatorAdd = new FormValidator(validatorConfig, formAdd);
-    validatorAdd.enableValidation();
-});
+const formProfileValidate = new FormValidator(validatorConfig, popupEdit);
+formProfileValidate.enableValidation();
+
+const formAddCardValidate = new FormValidator(validatorConfig, popupAdd);
+formAddCardValidate .enableValidation();

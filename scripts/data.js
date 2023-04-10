@@ -1,5 +1,3 @@
-import  FormValidator  from "./FormValidator.js";
-
 //  ============== Глобальные переменные для валидации ===================
 
 export const validatorConfig = {
@@ -12,22 +10,8 @@ export const validatorConfig = {
   popupInputError: ".popup__input-error",
 };
 
-//  ============== Глобальные перменные  для функционала страницы ===================
-export const formProfileValidate = new FormValidator(
-  validatorConfig,
-
-  document.querySelector("#popup_edit")
-);
-
-export const formAddCardValidate = new FormValidator(
-  validatorConfig,
-
-  document.querySelector("#popup_add")
-);
-
 
 //создаем экземпляр формы
-
 export const formCollection = document.querySelectorAll(".popup__content");
 // открытие/закрытие popup
 export const formEdit = document.querySelector(".popup__content_edit");
