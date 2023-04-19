@@ -1,19 +1,10 @@
-import {
-    fullImg,
-    popupImg,
-    nameImg
-} from './data.js';
-
-import { openPopup } from './popupAction.js';
-
-
 export default class Card {
     //конструктор карточки
-    constructor(data, template, handlerCardClick) {
+    constructor(data, template, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._template = template;
-        this._handlerCardClick = handlerCardClick;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -46,12 +37,7 @@ export default class Card {
 
     //слушатель на действия карточки
     _setEventListeners() {
-        this._imageCard.addEventListener('click', () => {
-            fullImg.src = this._link;
-            fullImg.alt = this._name;
-            nameImg.textContent = this._name
-            openPopup(popupImg)
-        });
+        this._imageCard.addEventListener("click",() => this._handleCardClick (this._name, this._link));
         this._dltButton.addEventListener('click', (e) => {
             e.target.closest('.cards').remove()
             e.stopPropagation();
