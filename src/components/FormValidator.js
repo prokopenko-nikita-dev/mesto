@@ -53,10 +53,10 @@ export default class FormValidator {
     });
     console.log(valid);
     if (valid) {
-      this._submitButton.disabled = "";
+      this._submitButton.disabled = false;
       this._submitButton.classList.remove(this._config.buttonSaveDisabled);
     } else {
-      this._submitButton.disabled = "true";
+      this._submitButton.disabled = true;
       this._submitButton.classList.add(this._config.buttonSaveDisabled);
     }
   }
