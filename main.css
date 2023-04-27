@@ -16,6 +16,7 @@
 .elements__list{display:grid;gap:17px;grid-template-columns:repeat(3,1fr);margin:0 auto;max-width:880px;padding:51px 0 67px;width:100%}@media screen and (max-width:1024px){.elements__list{grid-template-columns:repeat(2,1fr);max-width:586px}}@media screen and (max-width:767px){.elements__list{align-items:center;display:flex;flex-direction:column;flex-wrap:wrap;max-width:282px}}
 .cards{background-color:#fff;border-radius:10px;display:flex;flex-direction:column;max-width:282px;overflow:hidden;position:relative}
 .cards__info{align-items:center;background-color:#fff;display:flex;justify-content:space-between;min-height:79px;padding:0 20px}
+.cards__info-counter{color:#000;font-size:13px;line-height:3px;margin:11px 0 0;text-align:center}
 .cards__container{align-items:center;align-self:center;box-sizing:border-box;display:flex;height:282px;justify-content:center;margin:0;-o-object-fit:cover;object-fit:cover;-o-object-position:0 0;object-position:0 0;overflow:hidden;padding:0;position:relative;width:282px}
 .cards__trash{background-color:transparent;background-image:url(assest/images/Delete..svg);background-repeat:no-repeat;border:none;box-sizing:border-box;cursor:pointer;height:19px;position:absolute;right:20px;top:20px;transition:opacity .4s;width:18px}.cards__trash:hover{opacity:.5}
 .cards__img{cursor:pointer;display:block;min-height:282px;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;width:100%}
