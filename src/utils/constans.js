@@ -16,11 +16,15 @@ export const formCollection = document.querySelectorAll(".popup__content");
 // открытие/закрытие popup
 export const formEdit = document.querySelector(".popup__content_edit");
 export const formAddCard = document.querySelector(".popup__content_add");
+export const formEditAvatar = document.querySelector(".popup__content_avatar");
 
 // редактирование  popup__edit
-
+export const popupEditAvatar = document.querySelector("#popup_avatar");
+export const popupDelete = document.querySelector("#popup_delete");
 export const popupEdit = document.querySelector("#popup_edit");
 export const btnEditProfile = document.querySelector(".profile__edit-profile");
+export const btnEditAvatar = document.querySelector(".profile__avatar-button");
+export const btnTrashCard = document.querySelector(".cards__trash");
 export const userName = document.querySelector(".profile__edit-name");
 export const userDescription = document.querySelector(".profile__edit-prof");
 export const inputUserNameFormProfile = document.querySelector(".popup__input_type_name");

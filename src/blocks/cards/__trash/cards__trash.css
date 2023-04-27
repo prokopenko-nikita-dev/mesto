@@ -16,3 +16,7 @@
 .cards__trash:hover {
     opacity: 0.5;
 }
+
+.element__trash-inactive {
+    display: none;
+}
