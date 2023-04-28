@@ -19,4 +19,4 @@ The main task was to understand the functionality of JS and work with it. Button
 
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
-* [Link to the project work "Mesto"](https://nikitaprokopenko1.github.io/mesto-index.html/)
+* [Link to the project work "Mesto"](https://prokopenko-nikita-dev.github.io/mesto/)
