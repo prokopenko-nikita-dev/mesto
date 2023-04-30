@@ -1,6 +1,6 @@
 export default class Card {
     //конструктор карточки
-    constructor(data, template, handleCardClick, handleDeleteCard, ownerId) {
+    constructor(data, template, handleCardClick, handleDeleteCard, ownerId, handleLike, handleUnlike) {
         this._name = data.name;
         this._link = data.link;
         this._template = template;
@@ -10,6 +10,9 @@ export default class Card {
         this._handleDeleteCard = handleDeleteCard;
         this._ownerId = ownerId;
         this._cardOwner = data.owner._id;
+        this._data = data;
+        this._handleLike = handleLike;
+        this._handleUnlike = handleUnlike;
     }
 
     _getTemplate() {
@@ -47,7 +50,8 @@ export default class Card {
         this._counterLike.textContent = this._likes.length;
 
         this._checkDeleteButton();
-        this._setEventListeners()
+        this._setEventListeners();
+        this.likeState();
         return this._cardTemplate;
     }
 
@@ -56,8 +60,12 @@ export default class Card {
     }
 
     _handleClickLike() {
-        console.log(this._cardOwner, this._ownerId)
-        this._likeButton.classList.toggle("cards__info-like_active");
+        console.log(this._cardOwner, this._ownerId, this._data)
+        if (this.ownLike()) {
+            this._handleUnlike(this._id)
+        } else {
+            this._handleLike(this._id)
+        }
     }
 
     _checkDeleteButton() {
@@ -73,5 +81,29 @@ export default class Card {
         this._imageCard.addEventListener("click", this._handleOpenPopup.bind(this));
         this._likeButton.addEventListener("click", this._handleClickLike.bind(this));
         this._dltButton.addEventListener("click", this._handleDelCard.bind(this));
+    }
+
+    ownLike() {
+        return this._likes.some(like => {
+            return like._id === this._ownerId;
+        });
+    }
+
+    likeState() {
+        if (this.ownLike()) {
+            this._likeButton.classList.add('cards__info-like_active');
+        }
+        else {
+            this._likeButton.classList.remove('cards__info-like_active');
+        }
+    }
+
+    renderLikes() {
+        this._counterLike.textContent = this._likes.length;
+        this.likeState();
+    }
+
+    setLikes(newLikes) {
+        this._likes = newLikes;
     }
 }

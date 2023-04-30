@@ -4,11 +4,9 @@ import {
     popupEdit,
     popupAdd,
     popupEditAvatar,
-    popupDelete,
     btnAddCard,
     btnEditProfile,
     btnEditAvatar,
-    btnTrashCard,
     formAddCard,
     formEditAvatar
 } from "../utils/constans.js";
@@ -57,14 +55,14 @@ const popupDeleteCard = new PopupDelete(
         const submitText = popupDeleteCard.getSubmitText();
         popupDeleteCard.setLoadingText('Удаление...');
         api.deleteCard(element._id)
-        .then(res => 
-            element.removeCard())
-        .catch(err => {
-            console.log(err);
-        })
-        .finally(() => {
-            popupDeleteCard.setLoadingText(submitText);
-        })
+            .then(res =>
+                element.removeCard())
+            .catch(err => {
+                console.log(err);
+            })
+            .finally(() => {
+                popupDeleteCard.setLoadingText(submitText);
+            })
         popupDeleteCard.close();
     }
 );
@@ -77,7 +75,18 @@ function handleDeleteCard(element) {
 
 // Функция создания карточки из класса Card
 function createCard(data) {
-    const card = new Card(data, "#template", handleCardClick, handleDeleteCard, userInfo.getUserId());
+    const card = new Card(data, "#template", handleCardClick, handleDeleteCard, userInfo.getUserId(),
+        function (id) {
+            api.likeCard(id).then(res => {
+                card.setLikes(res.likes)
+                card.renderLikes()
+            })
+        }, function (id) {
+            api.unlikeCard(id).then(res => {
+                card.setLikes(res.likes)
+                card.renderLikes()
+            })
+        });
     const cardElement = card.generateCard(data);
     return cardElement;
 }
@@ -105,16 +114,14 @@ const popupProfileWithForm = new PopupWithForm(
         const submitText = popupProfileWithForm.getSubmitText();
         popupProfileWithForm.setLoadingText('Сохранение...')
         api.updateUserInfo(data.name, data.info)
-        .catch(err => {
-            console.log(err);
-        })
-        .finally(() => {
-            popupProfileWithForm.setLoadingText(submitText);
-        })
-        cardsSection.addItem(createCard(data));
-        popupCardWithForm.close();
+            .catch(err => {
+                console.log(err);
+            })
+            .finally(() => {
+                popupProfileWithForm.setLoadingText(submitText);
+                popupProfileWithForm.close();
+            })
         userInfo.setUserInfo(data.name, data.info);
-        popupProfileWithForm.close();
     }
 );
 
@@ -129,16 +136,17 @@ const popupCardWithForm = new PopupWithForm(
             link: formValues["src"]
         };
         const submitText = popupCardWithForm.getSubmitText();
-        popupCardWithForm .setLoadingText('Сохранение...');
+        console.log(submitText)
+        popupCardWithForm.setLoadingText('Сохранение...');
         api.addCard(data.name, data.link)
-        .then(res => cardsSection.addItem(createCard(res)))
-        .catch(err => {
-            console.log(err);
-        })
-        .finally(() => {
-            popupCardWithForm.setLoadingText(submitText);
-        })
-        popupCardWithForm.close();
+            .then(res => cardsSection.addItem(createCard(res)))
+            .catch(err => {
+                console.log(err);
+            })
+            .finally(() => {
+                popupCardWithForm.setLoadingText(submitText);
+                popupCardWithForm.close();
+            })
     }
 );
 
@@ -147,21 +155,21 @@ popupCardWithForm.setEventListeners();
 // создание попапа с редактированием профиля с помощью класса PopupWithForm
 const popupAvatarWithForm = new PopupWithForm(
     "#popup_avatar",
-    (formValues) => {
+    (data) => {
         const submitText = popupAvatarWithForm.getSubmitText();
-        popupAvatarWithForm .setLoadingText('Сохранение...');
+        popupAvatarWithForm.setLoadingText('Сохранение...');
         api.editAvatar(data.link)
-        .then(res => {
-            userData.setUserAvatar(res)
-            popupAvatarWithForm .closePopup();
-          })
-        .catch(err => {
-            console.log(err);
-        })
-        .finally(() => {
-            popupAvatarWithForm.setLoadingText(submitText);
-        })
-        popupAvatarWithForm.close();
+            .then(res => {
+                userInfo.setUserAvatar(res.avatar)
+                popupAvatarWithForm.close();
+            })
+            .catch(err => {
+                console.log(err);
+            })
+            .finally(() => {
+                popupAvatarWithForm.setLoadingText(submitText);
+                popupAvatarWithForm.close();
+            })
     }
 );
 

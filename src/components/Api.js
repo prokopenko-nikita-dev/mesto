@@ -50,11 +50,11 @@ export default class Api {
     }
 
     editAvatar(link) {
-        return fetch(this._baseUrl + '/avatar', {
+        return fetch(this._baseUrl + '/users/me/avatar', {
             method: 'PATCH',
             headers: { ...this._headers, 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                avatar: item.avatar
+                avatar: link
             })
         })
             .then(res => { return this._getOriginalResponse(res) })
@@ -69,7 +69,7 @@ export default class Api {
     }
 
     likeCard(id) {
-        return fetch(this._baseUrl + '/likes' + id, {
+        return fetch(this._baseUrl + '/cards/' + id + '/likes', {
             method: 'PUT',
             headers: { ...this._headers, 'Content-Type': 'application/json' },
         })
@@ -77,7 +77,7 @@ export default class Api {
     }
 
     unlikeCard(id) {
-        return fetch(this._baseUrl + '/likes' + id, {
+        return fetch(this._baseUrl + '/cards/' + id + '/likes', {
             method: 'DELETE',
             headers: { ...this._headers, 'Content-Type': 'application/json' },
         })

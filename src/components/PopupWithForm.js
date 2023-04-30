@@ -18,22 +18,22 @@ export default class PopupWithForm extends Popup {
     }
 
     setInputValues(inputValue) {
-        this._inputList.forEach((input) => { 
-          input.value = inputValue[input.name]
+        this._inputList.forEach((input) => {
+            input.value = inputValue[input.name]
         })
     }
 
     setLoadingText(text) {
-        this._btnSaveAdd.textContent = text;
+        this._btnSaveAdd.innerText = text;
     }
 
     getSubmitText() {
-        return this._btnSaveAdd.textContent;
+        return this._btnSaveAdd.innerText;
     }
 
     setEventListeners() {
         super.setEventListeners();
-        this._popupElement.addEventListener("submit", (e) =>{
+        this._popupElement.addEventListener("submit", (e) => {
             e.preventDefault();
             this._handleSubmitForm(this._getInputValues());
         })

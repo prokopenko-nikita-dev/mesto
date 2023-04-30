@@ -95,7 +95,7 @@
             class="popup__input popup__input_type_prof">
           <span class="popup__input-error" id="src-error">Введите адрес сайта</span>
         </div>
-        <button type="submit" class="popup__save-button popup__save-button_disabled" disabled>Сохранить</button>
+        <button type="submit" class="popup__save-button popup__save-button_disabled" disabled>Создать</button>
       </form>
     </div>
   </div>
@@ -130,10 +130,12 @@
       <button class="popup__close popup__close-avatar" type="button"></button>
       <h2 class="popup__title">Обновить аватар</h2>
       <form name="content" class="popup__content popup__content_avatar" novalidate>
-        <input type="url" id="avatar-url" required name="avatar" autocomplete="off" placeholder="Ссылка на аватар"
-          class="popup__input popup__input_type_avatar">
-        <span class="popup__input-error" id="src-error"></span>
-        <button type="submit" class="popup__save-button popup__save-button_disabled">Сохранить</button>
+        <div class="popup__form-group">
+          <input required type="url" id="link" placeholder="Ссылка на аватар" name="link"
+            class="popup__input popup__input_type_avatar">
+          <span class="popup__input-error" id="src-error">Введите адрес сайта</span>
+        </div>
+        <button type="submit" class="popup__save-button popup__save-button_disabled" disabled>Сохранить</button>
       </form>
     </div>
   </div>
