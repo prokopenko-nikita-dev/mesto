@@ -10,6 +10,9 @@
 * Adaptive layout
 * Figma
 * JavaScript
+* WebPack
+* Api
+* Http
 
 **<h3>Project Description</h3>**
 ________________________
